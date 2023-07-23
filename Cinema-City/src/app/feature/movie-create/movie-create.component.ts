@@ -8,13 +8,13 @@ import { NgForm } from '@angular/forms';
 })
 export class MovieCreateComponent {
 
-  constructor(){}
+  constructor() { }
 
-  submitHandler(form: NgForm){
+  submitHandler(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    const {} = form.value;
-    console.log(form.value)
+    const { title, director, year, genre, imageUrl, plot } = form.value;
+    
   }
 }

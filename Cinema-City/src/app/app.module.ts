@@ -8,6 +8,7 @@ import { FeatureModule } from './feature/feature.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { appInterceptorProvider } from './app.interseptor';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { CookieService } from 'ngx-cookie-service';
     SharedModule,
     HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, appInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

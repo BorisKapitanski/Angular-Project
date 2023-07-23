@@ -20,6 +20,7 @@ const routes: Routes = [
   {path: 'movie-details/:id', component: MovieDetailsComponent},
   {path: 'movie-edit/:id', component: MovieEditComponent},
   {path: 'my-profile', component: MyProfileComponent},
+  {path: '404', component: MyProfileComponent},
   {path: '**', component: ErrorPageComponent}
 ];
 

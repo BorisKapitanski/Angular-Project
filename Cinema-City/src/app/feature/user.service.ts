@@ -66,7 +66,7 @@ export class UserService implements OnDestroy {
 
   updateProfile(imageUrl: string) {
     return this.http
-      .put<User>('/api/users/profile', { imageUrl })
+      .put<User>(`${environment.apiUrl}/users/profile`, { imageUrl })
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
