@@ -1,0 +1,147 @@
+.movie-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    background-color: rgba(0, 0, 0,0.4);
+}
+.movie-details h3{
+    color: #F4B953;
+    padding-top: 2em;
+    font-size: 2.5em;
+    margin-bottom: 0;
+}
+.details{
+    width: 100em;
+    display: flex;
+    gap: 5em;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0,0.6);
+    border-radius: 1em;
+    overflow: hidden;
+}
+.details .media{
+    flex: 0 1 40%;
+}
+.details .media img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.details .info {
+    flex: 1 1 58%;
+    color: #F4B953;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.details .info h4{
+    font-size: 3.5em;
+    margin-bottom: 0;
+}
+.details .info h5{
+    font-size: 2em;
+}
+.details .info p{
+    width: 35em;
+    font-size: 1.5em;
+}
+.details .info .buttons{
+    display: flex;
+    gap: 3em;
+}
+.details .info .buttons button{
+    background-color: black;
+    color: #F4B953;
+    padding: 1em 2em;
+    font-size: 1.5em;
+    border: 1px solid #F4B953;
+}
+.details .info .buttons button:hover{
+    color: white;
+    border-color: white;
+    cursor: pointer;
+}
+
+.comments{
+    background-color: rgba(0, 0, 0,0.6);
+    border-radius: 1em;
+    color: #F4B953;
+    width: 100em;
+}
+.comments form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    padding-top: 2em;
+}
+.comments form label{
+    font-size: 2em;
+    padding: 1em 0;
+}
+.comments form textarea{
+    resize: none;
+    width: 30em;
+    height: 10em;
+    border: 5px solid #F4B953;
+}
+.comments form input{
+    font-size: 1.5em;
+    background-color: black;
+    color: #F4B953;
+    border: 1px solid #F4B953;
+    padding: 1em 2em;
+}
+.comments form input:hover{
+    color: white;
+    border-color: white;
+    cursor: pointer;
+}
+.comments h4{
+    text-align: center;
+    padding: 1em;
+    margin-top: 1em;
+    font-size: 2em;
+    border-top: 1px solid #F4B953;
+    border-bottom: 1px solid #F4B953;
+}
+.comment-list{
+    padding: 2em;
+}
+.comment-list ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 1em;
+}
+.comment{
+    background-color: rgba(197, 184, 184, 0.6) ;
+    color: white;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0 rgba(244, 185, 83, 0.6);
+}
+.comment .comment-author{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #F4B953;
+    height: 5em;
+    padding: 0 1em;
+    
+}
+.comment-author h5{
+    margin-bottom: 0;
+    font-size: 2em;
+}
+.comment > p{
+    font-size: 1.5em;
+    padding: 1em;
+    margin-bottom: 0;
+}
+.comment .comment-author p{
+    margin-bottom: 0;
+    align-self: flex-end;
+    font-size: 1em;
+}
