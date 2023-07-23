@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/feature/user.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-navigation',
@@ -8,11 +10,20 @@ import { UserService } from 'src/app/feature/user.service';
 })
 export class NavigationComponent {
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService, private router: Router){}
 
-  hasUser = this.userService.isLoggetIn;
+  get isLoggedIn(): boolean {
+    return this.userService.isLoggedIn;
+  }
 
-  logoutHandler(){
-    this.userService.logout();
+  logoutHandler(): void {
+    this.userService.logout().subscribe({
+      next: () => {
+        this.router.navigate([`/login`]);
+      },
+      error: () => {
+        this.router.navigate([`/login`]);
+      },
+    });
   }
 }

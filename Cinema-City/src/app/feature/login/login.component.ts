@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +9,20 @@ import { UserService } from '../user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  private errorFromServer: string = '';
-
-  constructor(private userService: UserService) { }
-
+  constructor(private userService: UserService, private router: Router) {}
 
   submitHandler(form: NgForm): void {
-
     if (form.invalid) {
       return;
+
+      
     }
 
     const { username, password } = form.value;
-    console.log(form.value)
-    const token = this.userService.login({username, password});
-    console.log(token)
+
+    this.userService.login(username, password).subscribe(() => {
+      this.router.navigate(['/home']);
+    });
   }
 
 } 
