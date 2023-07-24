@@ -26,6 +26,10 @@ function createMovie(req, res, next) {
     const { _id: userId } = req.user;
 
     movieModel.create({ title, director, genre, year, imageUrl, plot, ownerId: userId })
+        .then((movie)=>{
+            userModel.findOneAndUpdate({ _id: userId }, { $push: { movies: movie._id } })
+            .then(updatedUser=> res.status(200).json(updatedUser))
+        })
         .then(movie => {
             res.status(200).json(movie);
             // userModel.findOneAndUpdate({ _id: userId }, { $push: { movies: movie._id } })

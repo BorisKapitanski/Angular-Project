@@ -19,8 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.getMovieWithLimit(5).subscribe((movies) => {
-      this.movies = movies;
-      console.log(movies)
+      this.movies = movies.slice(-5).reverse();
       this.isLoading = false;
       if (this.movies) {
         this.noMovies = false;
