@@ -7,7 +7,7 @@ import { Movie } from '../Types/Movie';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class MovieService {
   constructor(private http: HttpClient) {}
 
  
@@ -35,7 +35,7 @@ export class ApiService {
     const { apiUrl } = environment;
     const limitFilter = limit ? `?limit=${limit}` : '';
 
-    return this.http.get<Movie[]>(`${apiUrl}/posts${limitFilter}`);
+    return this.http.get<Movie[]>(`${apiUrl}/movies${limitFilter}`);
   }
   
 
