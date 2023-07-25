@@ -34,14 +34,14 @@ This API isn't open API. Authentication is required to store and get data. You c
 
 # Endpoints: Users
 
-* ```/users/register``` -- signing up;
-* ```/users/login``` -- signing in;
-* ```/users/logout``` -- logging out;
+* ```/register``` -- signing up;
+* ```/login``` -- signing in;
+* ```/logout``` -- logging out;
 
 ## Register User
 Signs up user and returns the registered data as json.
 
-### URL --> ```/users/register```
+### URL --> ```/register```
 
 ### Method --> ```POST```
 
@@ -49,9 +49,10 @@ Signs up user and returns the registered data as json.
 
 ```
 {
-    "name":"John Doe",
+    "username":"John",
     "email":"john@email.com",
     "username":"Johny",
+    "age":23
     "password":"12345",
     "rePassword":"12345"
 }
@@ -59,15 +60,17 @@ Signs up user and returns the registered data as json.
 
 Required:
 
-```email``` : [string] -- The email of the person is required and must be unique;
+```email``` : [string] -- The email of the person is required;
 
 ```username``` : [string] -- The username of the person is required and must be unique, also there is a minimum length of 5 chars, allowed are latin letters and numbers;
 
 ```password``` : [string] -- The password of the person is required and must be unique, also there is a minimum length of 5 chars, allowed are latin letters and numbers;
 
+```age``` : [number] -- The age of the person is required, also there is a minimum value of 1 and maximum value of 105;
+
 Not Required
 
-```tel``` : [string] -- Optional;
+```imageUrl``` : [string] -- the client adds default profile picture ;
 
 ### Success Response:
 
@@ -76,12 +79,12 @@ Code: 200
 Content: 
 ``` 
 {
-    "themes": [],
-    "posts": [],
+    "movies": [],
     "_id": "5f1875690916010017964978",
-    "name": "John Doe",
     "email": "john@email.com",
-    "username": "Johny",
+    "username": "John",
+    "age": 23,
+    "imageUrl": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
     "created_at": "2020-10-14T08:04:12.196Z",
     "updatedAt": "2020-10-14T08:58:53.589Z"
 }
@@ -94,14 +97,14 @@ Code: 409 CONFLICT
 Content: 
 ```
 {
-    "message": "This email/username is already registered!"
+    "message": "This username is already registered!"
 }
 ```
 
 ## Login User
 Signs in user and returns the registered data as json.
 
-### URL --> ```/users/login```
+### URL --> ```/login```
 
 ### Method --> ```POST```
 
@@ -127,12 +130,12 @@ Code: 200
 Content: 
 ``` 
 {
-    "themes": ["5f85c51996b5601b2406e5b7"],
-    "posts": ["5f86bdcde012743fe4f5b324"],
+    "movies": [],
     "_id": "5f1875690916010017964978",
-    "name": "John Doe",
     "email": "john@email.com",
-    "username": "Johny",
+    "username": "John",
+    "age": 23,
+    "imageUrl": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
     "created_at": "2020-10-14T08:04:12.196Z",
     "updatedAt": "2020-10-14T08:58:53.589Z"
 }
@@ -152,7 +155,7 @@ Content:
 ## Logout User
 Logout user.
 
-### URL --> ```/users/logout```
+### URL --> ```/logout```
 
 ### Method --> ```POST```
 
@@ -167,15 +170,15 @@ Content:
 }
 ```
 
-# Endpoints: Themes
+# Endpoints: Movies
 
-* ```/themes```
-* ```/themes/:themeId```
+* ```/movies```
+* ```/movie-details/:movieId```
 
-## Get Themes
-Returns all themes as json.
+## Get Movies
+Returns all Movies4 as json.
 
-### URL --> ```/themes```
+### URL --> ```/```
 
 ### Method --> ```GET```
 
@@ -187,13 +190,17 @@ Content:
 ``` 
 [
     {
-        "subscribers": ["5f8580d25d1da62568dd38fd"],
-        "posts": ["5f858dd2d895ad23602db9d5"],
-        "_id": "5f858dd2d895ad23602db9d4",
-        "themeName": "Some Theme",
-        "userId": "5f8580d25d1da62568dd38fd",
-        "created_at": "2020-10-13T11:21:54.863Z",
-        "updatedAt": "2020-10-13T11:21:54.898Z",
+        "comments": [],
+        "_id": "64ad048d38e5ad0bc4ef27d8",
+        "title": "The Terminator",
+        "director": "James Cameron",
+        "genre": "Action",
+        "year": 1984,
+        "imageUrl": "https://resizing.flixster.com/4QRPo96rNUmXp8lA2LqMBfZBvMQ=/300x300/v2/https://flxt.tmsimg.com/assets/p7764_i_h9_ad.jpg",
+        "plot": "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+        "ownerId": "64acf0cd87cc0b3b002886c6",
+        "created_at": "2023-07-11T07:28:13.118Z",
+        "updatedAt": "2023-07-11T07:28:13.118Z",
         "__v": 0
     }
 ]
@@ -210,26 +217,74 @@ Content:
 }
 ```
 
-## Post Theme
-Creates new Theme with the first post of the author and returns the theme as json.
+## Get Movie
+Returns a single movie as json.
 
-### URL --> ```/themes```
+### URL --> ```/movie-details/:movieId
+
+### Method --> ```GET```
+
+### Success Response:
+
+Code: 200
+
+Content: 
+``` 
+    {
+        "comments": [],
+        "_id": "64ad048d38e5ad0bc4ef27d8",
+        "title": "The Terminator",
+        "director": "James Cameron",
+        "genre": "Action",
+        "year": 1984,
+        "imageUrl": "https://resizing.flixster.com/4QRPo96rNUmXp8lA2LqMBfZBvMQ=/300x300/v2/https://flxt.tmsimg.com/assets/p7764_i_h9_ad.jpg",
+        "plot": "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+        "ownerId": "64acf0cd87cc0b3b002886c6",
+        "created_at": "2023-07-11T07:28:13.118Z",
+        "updatedAt": "2023-07-11T07:28:13.118Z",
+        "__v": 0
+    }
+```
+
+### Error Response:
+
+Code: 500 Internal Server Error
+
+Content: 
+```
+{
+    message: "Something went wrong!"
+}
+```
+
+
+## Post Movie
+Creates new Movie and returns the movie as json.
+
+### URL --> ```/```
 
 ### Method --> ```POST```
 
 ### Body -->
 
-```
-{
-    "themeName": "Some Theme Title",
-    "postText": "Some Post text"
-}
+```{
+        "title": "The Terminator",
+        "director": "James Cameron",
+        "genre": "Action",
+        "year": 1984,
+        "imageUrl": "https://resizing.flixster.com/4QRPo96rNUmXp8lA2LqMBfZBvMQ=/300x300/v2/https://flxt.tmsimg.com/assets/p7764_i_h9_ad.jpg",
+        "plot": "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+    }
 ```
 
 Required:
 
-```themeName``` : [string] -- The Title of your new Theme, which you want to create
-```postText``` : [string] -- The text of your post. This post will be append as first comment on your Theme.
+```title``` : [string] -- The Title of your new Movie, which you want to create.
+```director``` : [string] -- The director of the Movie.
+```genre``` : [string] -- The genre of the Movie.
+```year``` : [number] -- The year, the Movie was released.
+```imageUrl``` : [string] -- Image Url of the Movie.
+```plot``` : [string] -- The plot of the Movie.
 
 ### Success Response:
 
@@ -238,14 +293,18 @@ Code: 200
 Content: 
 ``` 
 {
-    "subscribers": ["5f86c1f0a112c130e89964af"],
-    "posts": ["5f86c38abfa44331a0ff0094"],
-    "_id": "5f86c38abfa44331a0ff0093",
-    "themeName": "Some Theme Title",
-    "userId": "5f86c1f0a112c130e89964af",
-    "created_at": "2020-10-14T09:23:22.102Z",
-    "updatedAt": "2020-10-14T09:23:22.114Z",
-    "__v": 0
+        "comments": [],
+        "_id": "64ad048d38e5ad0bc4ef27d8",
+        "title": "The Terminator",
+        "director": "James Cameron",
+        "genre": "Action",
+        "year": 1984,
+        "imageUrl": "https://resizing.flixster.com/4QRPo96rNUmXp8lA2LqMBfZBvMQ=/300x300/v2/https://flxt.tmsimg.com/assets/p7764_i_h9_ad.jpg",
+        "plot": "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+        "ownerId": "64acf0cd87cc0b3b002886c6",
+        "created_at": "2023-07-11T07:28:13.118Z",
+        "updatedAt": "2023-07-11T07:28:13.118Z",
+        "__v": 0
 }
 ```
 
@@ -260,10 +319,10 @@ Content:
 }
 ```
 
-## Create Post
-Creates new Post of the author and returns the theme as json.
+## Create Comment
+Creates new Comment for Movie returns the movie as json.
 
-### URL --> ```/themes/:themeId```
+### URL --> ```/:movieId/comments```
 
 ### Method --> ```POST```
 
@@ -271,7 +330,7 @@ Creates new Post of the author and returns the theme as json.
 
 ```
 {
-    "postText": "Some Post text"
+            "text": "Nice movie"
 }
 ```
 
@@ -282,17 +341,13 @@ Code: 200
 Content: 
 ``` 
 {
-"subscribers": ["5f8580d25d1da62568dd38fd"],
-"posts": [
-    "5f85ad8f1141b13a04a9139c",
-    "5f85b2501141b13a04a9139d"
-],
-"_id": "5f858dd2d895ad23602db9d4",
-"themeName": "Some Theme",
-"userId": "5f8580d25d1da62568dd38fd",
-"created_at": "2020-10-13T11:21:54.863Z",
-"updatedAt": "2020-10-13T13:57:36.466Z",
-"__v": 0
+            "_id": "64acfb80cec1db4734183a67",
+            "text": "Nice movie",
+            "userId": "64acf0cd87cc0b3b002886c6",
+            "movieId": "64acf1df87cc0b3b002886c8",
+            "created_at": "2023-07-11T06:49:36.075Z",
+            "updatedAt": "2023-07-11T06:49:36.075Z",
+            "__v": 0
 }
 ```
 
@@ -307,24 +362,34 @@ Content:
 }
 ```
 
-# Endpoints: Posts
+# Endpoints: Edit Movie
 
-* ```/themes/:themeId/posts/:postId```
+Edit already created Movie and returns the movie as json. The user must be the creator of the Movie.
 
-## Edit Post
-Edit Post if the user is the author of the post and returns the changed post.
+### URL --> ```/:movieId/edit```
 
-### URL --> ```/themes/:themeId/posts/:postId```
-
-### Method --> ```PUT```
+### Method --> ```POST```
 
 ### Body -->
 
+```{
+        "title": "The Terminator",
+        "director": "James Cameron",
+        "genre": "Action",
+        "year": 1984,
+        "imageUrl": "https://resizing.flixster.com/4QRPo96rNUmXp8lA2LqMBfZBvMQ=/300x300/v2/https://flxt.tmsimg.com/assets/p7764_i_h9_ad.jpg",
+        "plot": "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+    }
 ```
-{
-    "postText": "Changed text"
-}
-```
+
+Required:
+
+```title``` : [string] -- The Title of your new Movie, which you want to create.
+```director``` : [string] -- The director of the Movie.
+```genre``` : [string] -- The genre of the Movie.
+```year``` : [number] -- The year, the Movie was released.
+```imageUrl``` : [string] -- Image Url of the Movie.
+```plot``` : [string] -- The plot of the Movie.
 
 ### Success Response:
 
@@ -333,14 +398,18 @@ Code: 200
 Content: 
 ``` 
 {
-    "likes": [],
-    "_id": "5f86c3fcbfa44331a0ff0095",
-    "text": "Changed text",
-    "userId": "5f86c1f0a112c130e89964af",
-    "themeId": "5f85c51996b5601b2406e5b7",
-    "created_at": "2020-10-14T09:25:16.203Z",
-    "updatedAt": "2020-10-14T09:31:45.021Z",
-    "__v": 0
+        "comments": [],
+        "_id": "64ad048d38e5ad0bc4ef27d8",
+        "title": "The Terminator",
+        "director": "James Cameron",
+        "genre": "Action",
+        "year": 1984,
+        "imageUrl": "https://resizing.flixster.com/4QRPo96rNUmXp8lA2LqMBfZBvMQ=/300x300/v2/https://flxt.tmsimg.com/assets/p7764_i_h9_ad.jpg",
+        "plot": "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+        "ownerId": "64acf0cd87cc0b3b002886c6",
+        "created_at": "2023-07-11T07:28:13.118Z",
+        "updatedAt": "2023-07-11T07:28:13.118Z",
+        "__v": 0
 }
 ```
 
@@ -364,10 +433,10 @@ Content:
 }
 ```
 
-## Delete Post
-Deletes Post if the user is the author of the post and returns the deleted post.
+## Delete Movie
+Deletes Movie if the user is the author of the Movie and returns the deleted Movie.
 
-### URL --> ```/themes/:themeId/posts/:postId```
+### URL --> ```/:movieId/delete```
 
 ### Method --> ```DELETE```
 
@@ -378,14 +447,18 @@ Code: 200
 Content: 
 ``` 
 {
-    "likes": [],
-    "_id": "5f86c3fcbfa44331a0ff0095",
-    "text": "Changed text",
-    "userId": "5f86c1f0a112c130e89964af",
-    "themeId": "5f85c51996b5601b2406e5b7",
-    "created_at": "2020-10-14T09:25:16.203Z",
-    "updatedAt": "2020-10-14T09:33:56.595Z",
-    "__v": 0
+        "comments": [],
+        "_id": "64ad048d38e5ad0bc4ef27d8",
+        "title": "The Terminator",
+        "director": "James Cameron",
+        "genre": "Action",
+        "year": 1984,
+        "imageUrl": "https://resizing.flixster.com/4QRPo96rNUmXp8lA2LqMBfZBvMQ=/300x300/v2/https://flxt.tmsimg.com/assets/p7764_i_h9_ad.jpg",
+        "plot": "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+        "ownerId": "64acf0cd87cc0b3b002886c6",
+        "created_at": "2023-07-11T07:28:13.118Z",
+        "updatedAt": "2023-07-11T07:28:13.118Z",
+        "__v": 0
 }
 ```
 
@@ -408,58 +481,4 @@ Content:
     message: "Something went wrong!"
 }
 ```
-## Like Post
-Adds like to the post.
 
-### URL --> ```/likes/:postId```
-
-### Method --> ```PUT```
-
-### Success Response:
-
-Code: 200
-
-Content: 
-``` 
-{
-    message: "Liked successful!"
-}
-```
-
-### Error Response:
-
-Code: 500 Internal Server Error
-
-Content: 
-```
-{
-    message: "Something went wrong!"
-}
-```
-
-
-
-
-<!-- users
-.post /register - register new user
-.post /login - login user
-.post /logout - logout user
-
-.get /profile - get user info
-.post /profile - post user info
-.put /profile - edit user info
-
-themes
-.get /themes - lists all themes
-.post /themes - create new theme only for registered users
-
-posts:
-.get themes/id - get all posts for theme
-.post themes/id - create post in theme by id only for registered users
-.put themes/id/posts/id - edit post only possible for author
-.delete themes/id/posts/id - delete post only possible for author -->
-
-
-<!-- http://localhost:3000/api/users/register --  {"name":"SomeName","email":"some@email.com","username":"someUsername","password":"12345","rePassword":"12345"} -->
-<!--http://localhost:3000/api/themes -- {"themeName":"Some Theme", "userId":"5f85bf709a517d36f4abe656", "post": "Some Post" } -->
-<!-- http://localhost:3000/api/themes/5f858dd2d895ad23602db9d4  -- {"userId":"5f8580d25d1da62568dd38fd", "postText": "Some Post textsdfasdf" } -->
