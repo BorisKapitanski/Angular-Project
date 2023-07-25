@@ -34,7 +34,7 @@
     color: #F4B953;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
 }
 .details .info h4{
     font-size: 3.5em;
@@ -58,46 +58,30 @@
     font-size: 1.5em;
     border: 1px solid #F4B953;
 }
+.details .info .buttons a{
+    background-color: black;
+    color: #F4B953;
+    padding: 1em 2em;
+    font-size: 1.5em;
+    border: 1px solid #F4B953;
+    text-decoration: none;
+    display: block;
+}
 .details .info .buttons button:hover{
     color: white;
     border-color: white;
     cursor: pointer;
 }
-
+.details .info .buttons a:hover{
+    color: white;
+    border-color: white;
+    cursor: pointer;
+}
 .comments{
     background-color: rgba(0, 0, 0,0.6);
     border-radius: 1em;
     color: #F4B953;
     width: 100em;
-}
-.comments form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3em;
-    padding-top: 2em;
-}
-.comments form label{
-    font-size: 2em;
-    padding: 1em 0;
-}
-.comments form textarea{
-    resize: none;
-    width: 30em;
-    height: 10em;
-    border: 5px solid #F4B953;
-}
-.comments form input{
-    font-size: 1.5em;
-    background-color: black;
-    color: #F4B953;
-    border: 1px solid #F4B953;
-    padding: 1em 2em;
-}
-.comments form input:hover{
-    color: white;
-    border-color: white;
-    cursor: pointer;
 }
 .comments h4{
     text-align: center;

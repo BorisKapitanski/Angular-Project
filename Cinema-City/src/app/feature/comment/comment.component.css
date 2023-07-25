@@ -1,0 +1,29 @@
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    padding-top: 2em;
+}
+form label{
+    font-size: 2em;
+    padding: 1em 0;
+}
+form textarea{
+    resize: none;
+    width: 30em;
+    height: 10em;
+    border: 5px solid #F4B953;
+}
+form input{
+    font-size: 1.5em;
+    background-color: black;
+    color: #F4B953;
+    border: 1px solid #F4B953;
+    padding: 1em 2em;
+}
+form input:hover{
+    color: white;
+    border-color: white;
+    cursor: pointer;
+}

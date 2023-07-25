@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { User } from '../Types/User';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
-import { DEFAULT_USER_IMG_URL } from './constants/default-user-img-url';
+import { DEFAULT_USER_IMG_URL } from './constats/defaultImageUrl';
 import { environment } from "../../environments/environment.development";
 
 @Injectable({

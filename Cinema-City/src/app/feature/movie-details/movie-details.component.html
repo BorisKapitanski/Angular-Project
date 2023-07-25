@@ -2,26 +2,24 @@
     <h3>Details</h3>
     <div class="details">
         <div class="media">
-            <img src="https://media.timeout.com/images/105863223/image.jpg" alt="star wars image">
+            <img src="{{movie?.imageUrl}}" alt="{{movie?.title}}">
         </div>
         <div class="info">
-            <h4>Star Wars</h4>
-            <h5>Steven Speelberg <span>2005</span></h5>
-            <p>Fantasy</p>
-            <p>As a new threat to the galaxy rises, Rey, a desert scavenger, and Finn, an ex-stormtrooper, must join Han Solo and Chewbacca to search for the one hope of restoring peace.</p>
+            <h4>{{movie?.title}}</h4>
+            <h5>{{movie?.director}} <span>{{movie?.year}}</span></h5>
+            <p>{{movie?.genre}}</p>
+            <p>{{movie?.plot}}</p>
             <div class="buttons">
-                <button>Edit</button>
-                <button>Delete</button>
+                <a routerLink="/movie-edit/{{movie?._id}}">Edit</a>
+                <button (click)="deleteHandler()">Delete</button>
             </div>
         </div>
     </div>
 
     <div class="comments">
-        <form>
-            <label for="comment">What is on your mind?</label>
-            <textarea name="comment" id="comment" placeholder="Add your comment here..."></textarea>
-            <input type="submit" value="Add comment">
-        </form>
+        
+        <app-comment/>
+
         <h4>Comments</h4>
         <div class="comment-list">
             <ul>
