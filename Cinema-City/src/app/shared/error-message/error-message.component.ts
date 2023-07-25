@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ErrorService } from './error.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ErrorService } from './error.service';
   templateUrl: './error-message.component.html',
   styleUrls: ['./error-message.component.css']
 })
-export class ErrorMessageComponent implements OnInit {
+export class ErrorMessageComponent implements OnInit, OnDestroy {
   apiError$ = this.errorService.apiError$$.asObservable();
   errorMsg = '';
 
@@ -14,7 +14,10 @@ export class ErrorMessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiError$.subscribe((err: any) => {
-      this.errorMsg = err;
+      this.errorMsg = err?.error.message;
     });
+  }
+  ngOnDestroy(): void {
+    this.errorService.apiError$$.next(null);
   }
 }

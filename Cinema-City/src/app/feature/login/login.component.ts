@@ -14,8 +14,6 @@ export class LoginComponent {
   submitHandler(form: NgForm): void {
     if (form.invalid) {
       return;
-
-      
     }
 
     const { username, password } = form.value;
