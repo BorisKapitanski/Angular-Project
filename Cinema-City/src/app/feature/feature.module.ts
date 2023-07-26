@@ -12,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
-import { MovieDeleteComponent } from './movie-delete/movie-delete.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -27,7 +27,7 @@ import { MovieDeleteComponent } from './movie-delete/movie-delete.component';
     MovieCreateComponent,
     MovieEditComponent,
     CommentComponent,
-    MovieDeleteComponent
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +44,8 @@ import { MovieDeleteComponent } from './movie-delete/movie-delete.component';
     MovieCreateComponent,
     MovieDetailsComponent,
     MovieEditComponent,
-    CommentComponent
+    CommentComponent,
+    ModalComponent
   ]
 })
 export class FeatureModule { }
