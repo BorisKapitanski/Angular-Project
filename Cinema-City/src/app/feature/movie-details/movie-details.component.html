@@ -1,5 +1,5 @@
+<app-modal title="{{movie?.title}}" *ngIf="isLoggedIn && isOwner"/>
 <div class="movie-details">
-    <app-modal title="{{movie?.title}}"/>
     <h3>Details</h3>
     <div class="details">
         <div class="media">
@@ -10,7 +10,7 @@
             <h5>{{movie?.director}} <span>{{movie?.year}}</span></h5>
             <p>{{movie?.genre}}</p>
             <p>{{movie?.plot}}</p>
-            <div class="buttons">
+            <div class="buttons" *ngIf="isLoggedIn && isOwner">
                 <a routerLink="/movie-edit/{{movie?._id}}">Edit</a>
                 <button (click)="deleteHandler()">Delete</button>
             </div>
@@ -19,7 +19,7 @@
 
     <div class="comments">
         
-        <app-comment/>
+        <app-comment *ngIf="isLoggedIn"/>
 
         <h4>Comments</h4>
         <div class="comment-list">

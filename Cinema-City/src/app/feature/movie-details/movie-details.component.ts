@@ -3,6 +3,9 @@ import { MovieService } from '../movie.service';
 import { Movie } from 'src/app/Types/Movie';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../modal.service';
+import { publishFacade } from '@angular/compiler';
+import { User } from 'src/app/Types/User';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -13,17 +16,30 @@ export class MovieDetailsComponent implements OnInit {
 
   movie: Movie | undefined;
   movieId = this.route.snapshot.params["id"];
-  
-  constructor(private movieService: MovieService, private route: ActivatedRoute, private modalService: ModalService){}
-  
+  isLoggedIn: boolean = false;
+  isOwner: boolean = false;
+  constructor(
+    private movieService: MovieService,
+    private route: ActivatedRoute,
+    private modalService: ModalService,
+    private userService: UserService) {}
+
   ngOnInit(): void {
-    this.movieService.getMovie(`/${this.movieId}`).subscribe(movie=>{
+    this.movieService.getMovie(`/${this.movieId}`).subscribe(movie => {
       this.movie = movie;
-      
+      this.userService.user$.subscribe((user)=>{
+        if(user){
+          this.isLoggedIn = true;
+          if(this.movie?.ownerId === user?._id){
+            this.isOwner = true;
+          }
+        }
+      })
     })
+    
   }
 
-  deleteHandler():void{
+  deleteHandler(): void {
     this.modalService.open();
   }
 }

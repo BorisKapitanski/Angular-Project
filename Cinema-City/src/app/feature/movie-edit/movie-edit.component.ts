@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MovieService } from '../movie.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-edit',
@@ -7,18 +9,26 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./movie-edit.component.css']
 })
 export class MovieEditComponent implements OnInit {
+  @ViewChild('form') form: NgForm | undefined;
 
-  constructor(){}
+  movieId = this.activedRoute.snapshot.params["id"];
+
+  constructor(private movieService: MovieService, private activedRoute: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
-    // get data for the form
+    this.movieService.getMovie(this.movieId).subscribe((movie)=>{
+      const {title, director, year, plot, genre, imageUrl} = movie
+      this.form?.setValue({title, director, year, plot, genre, imageUrl});
+    })
   }
   
-  submitHandler(form: NgForm){
-    if (form.invalid) {
+  submitHandler(){
+    if (this.form?.invalid) {
       return;
     }
-    const {} = form.value;
-    console.log(form.value)
+    const {title, director, year, genre, imageUrl, plot} = this.form?.value;
+    this.movieService.editMovie(title, director, year, genre, imageUrl, plot, this.movieId).subscribe(()=>{
+      this.router.navigate([`/movie-details/${this.movieId}`]);
+    })
   }
 }
