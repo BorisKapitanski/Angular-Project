@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { Movie } from '../Types/Movie';
+import { Movie } from '../../Types/Movie';
+
 
 
 @Injectable({
@@ -38,8 +39,4 @@ export class MovieService {
     return this.http.get<Movie[]>(`${environment.apiUrl}/movies${limitFilter}`);
   }
   
-
-  createComment(text: string, userId: string, movieId: string) {
-    return this.http.post<Movie>(`${environment.apiUrl}/${movieId}/comments`, { text, userId, movieId });
-  }
 }

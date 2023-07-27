@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { MovieService } from 'src/app/feature/movie.service';
-import { UserService } from 'src/app/feature/user.service';
+import { MovieService } from '../../feature/services/movie.service';
+import { UserService } from '../../feature/services/user.service';
 
 export const canActivate : CanActivateFn = (route, state) => {
   const userService = inject(UserService);

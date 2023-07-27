@@ -19,73 +19,24 @@
 
     <div class="comments">
         
-        <app-comment *ngIf="isLoggedIn"/>
+        <app-comment *ngIf="isLoggedIn" (commentIsCreated)="getNewComment($event)"/>
 
         <h4>Comments</h4>
-        <div class="comment-list">
+        <h4 *ngIf="!movie?.comments">There are no added comments yet.</h4>
+        <div class="comment-list" *ngIf="movie?.comments">
             <ul>
-                <li class="comment">
+                <li class="comment" *ngFor="let comment of comments">
                     <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
+                        <div class="media-author-info">
+                            <div class="media">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
+                            </div>
+                            <!-- <img src="{{comment.userId.imageUrl}}" alt="Profile picture"> -->
+                            <h5>{{comment.userId.username}}</h5>
+                        </div>
+                        <p>Posted on: {{comment.created_at | date:'medium'}}</p>
                     </div>
-                    <p>I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie I like this movie I like this movie I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie I like this movie I like this movie I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie I like this movie I like this movie I like this movie</p>
-                </li>
-                <li class="comment">
-                    <div class="comment-author">
-                        <h5>From: Boris</h5>
-                        <p>Posted on: 07.07.2023 17:35</p>
-                    </div>
-                    <p>I like this movie</p>
+                    <p>{{comment.text}}</p>
                 </li>
             </ul>
         </div>

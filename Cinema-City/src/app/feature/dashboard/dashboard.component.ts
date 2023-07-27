@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/Types/Movie';
-import { NoMoviesComponent } from 'src/app/shared/no-movies/no-movies.component';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-dashboard',

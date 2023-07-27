@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../services/movie.service';
 import { Router } from '@angular/router';
 
 @Component({

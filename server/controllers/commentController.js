@@ -30,6 +30,14 @@ function createComment(req, res, next) {
         .catch(next);
 }
 
+function getComments(req, res, next) {
+    const { movieId } = req.params;
+    return commentModel.find({movieId: movieId})
+    .populate("userId")
+    .then(comments=> res.status(200).json(comments))
+    .catch(next)
+}
+
 // function editPost(req, res, next) {
 //     const { postId } = req.params;
 //     const { postText } = req.body;
@@ -82,6 +90,7 @@ module.exports = {
     // getLatestsPosts,
     // newPost,
     createComment,
+    getComments,
     // editPost,
     // deletePost,
     // like,

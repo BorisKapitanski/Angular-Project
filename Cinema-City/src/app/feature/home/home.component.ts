@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, RouterLink } from '@angular/router';
 import { Movie } from 'src/app/Types/Movie';
-import { environment } from 'src/environments/environment.development';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-home',

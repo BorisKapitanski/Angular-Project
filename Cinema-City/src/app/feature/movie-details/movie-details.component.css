@@ -118,9 +118,26 @@
     padding: 0 1em;
     
 }
-.comment-author h5{
+.comment .comment-author .media-author-info{
+    display: flex;
+    gap: 1em;
+}
+.comment .comment-author .media-author-info .media{
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    width: 3em;
+    overflow: hidden;
+}
+.comment .comment-author .media-author-info .media img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.comment .comment-author .media-author-info h5{
     margin-bottom: 0;
     font-size: 2em;
+    align-self: flex-end;
 }
 .comment > p{
     font-size: 1.5em;

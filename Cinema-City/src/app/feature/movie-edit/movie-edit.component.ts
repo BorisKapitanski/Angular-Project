@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
