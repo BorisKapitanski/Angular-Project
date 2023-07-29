@@ -1,6 +1,8 @@
+import { Movie } from "./Movie";
+
 export interface User {
     imageUrl: string,
-    movies: string[],
+    movies: Movie[],
     _id: string,
     age: number,
     email: string,
