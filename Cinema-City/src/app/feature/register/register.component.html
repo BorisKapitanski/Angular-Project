@@ -46,9 +46,10 @@
                 </div>
             </div>
 
+            <ng-container ngModelGroup="passwords" #passwords="ngModelGroup" appAppMatchPasswords   >
             <div class="field">
                 <label>Password</label>
-                <input type="password" name="password" ngModel #password="ngModel" required minlength="5" />
+                <input type="password" name="password" ngModel #password="ngModel" [(ngModel)]="password1" required minlength="5" />
                 <div class="error" *ngIf="password.touched">
                     <div *ngIf="password.errors?.['required']">
                         Password is required!
@@ -61,16 +62,17 @@
 
             <div class="field">
                 <label>Repeat Password</label>
-                <input type="password" name="repeatPassword" ngModel #repeatPassword="ngModel" required />
+                <input type="password" name="repeatPassword" ngModel #repeatPassword="ngModel" [(ngModel)]="password2" required    />
                 <div class="error" *ngIf="repeatPassword.touched">
                     <div *ngIf="repeatPassword.errors?.['required']">
                         Repeat password is required!
                     </div>
-                    <div *ngIf="password.value !== repeatPassword.value">
+                    <div *ngIf="passwords.errors?.['passwordCheck'] && (repeatPassword.dirty || repeatPassword.touched)">
                         Passwords don't match!
                     </div>
                 </div>
             </div>
+        </ng-container>
 
             <div class="button">
                 <input type="submit" value="Register" />

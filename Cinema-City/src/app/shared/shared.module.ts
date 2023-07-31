@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NoMoviesComponent } from './no-movies/no-movies.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
+import { AppMatchPasswordsDirective } from './directives/app-match-passwords.directive';
 
 
 
@@ -10,7 +11,8 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
   declarations: [
     LoadingSpinnerComponent,
     NoMoviesComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    AppMatchPasswordsDirective
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
   exports: [
     LoadingSpinnerComponent,
     NoMoviesComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    AppMatchPasswordsDirective
   ]
 })
 export class SharedModule { }
