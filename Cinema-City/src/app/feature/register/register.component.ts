@@ -26,16 +26,15 @@ export class RegisterComponent {
     const {
       username,
       email,
-      password,
-      rePassword,
+      passwords,
       age,
     } = form.value;
-
+    
     this.userService
       .register(username,
         email,
-        password,
-        rePassword,
+        passwords.password,
+        passwords.rePassword,
         age,)
       .subscribe(() => {
         this.router.navigate(['/login']);
