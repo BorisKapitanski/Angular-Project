@@ -5,6 +5,7 @@
     gap: 3em;
     background-color: rgba(0, 0, 0,0.4);
     padding-top: 3em;
+    height: 100%;
 }
 .recent-posts .info{
     display: flex;

@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { Movie } from 'src/app/Types/Movie';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../services/modal.service';
 import { UserService } from '../services/user.service';
-import { Comment } from 'src/app/Types/Comment';
+
 
 
 @Component({
@@ -25,6 +25,7 @@ export class MovieDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: ModalService,
     private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,5 +50,9 @@ export class MovieDetailsComponent implements OnInit {
 
   deleteHandler(): void {
     this.modalService.open();
+  }
+
+  editHandler():void {
+    this.router.navigate([`/movie-edit/${this.movieId}`], { state: { isOwner: this.isOwner } });
   }
 }

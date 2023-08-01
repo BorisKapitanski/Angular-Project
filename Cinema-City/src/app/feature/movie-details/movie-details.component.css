@@ -4,6 +4,7 @@
     align-items: center;
     gap: 2em;
     background-color: rgba(0, 0, 0,0.4);
+    height: 100%;
 }
 .movie-details h3{
     color: #F4B953;

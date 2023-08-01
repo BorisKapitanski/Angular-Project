@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { MovieService } from '../../feature/services/movie.service';
 import { UserService } from '../../feature/services/user.service';
+
 
 export const canActivate : CanActivateFn = (route, state) => {
   const userService = inject(UserService);
@@ -27,20 +27,15 @@ export const canNotActivate : CanActivateFn = (route, state) => {
   return false;
 };
 
-export const canManipulate: CanActivateFn = (route, state) => {
-  const userService = inject(UserService);
-  const movieService = inject(MovieService);
+export const  canManipulate: CanActivateFn = (route, state) => {
+  let canManipulate = false;
   const router = inject(Router);
 
-  movieService.getMovie(route.params['id']).subscribe((movie)=>{
-    if(userService.user?._id === movie.ownerId){
-      return true
-    }
-    
-    router.navigate(["/404"]);
-    return false
-  })
+  const isOwner = router.getCurrentNavigation()?.extras.state?.["isOwner"];
 
-  router.navigate(["/404"]);
-  return false;
+  if(isOwner){
+    canManipulate = true
+  }
+
+  return canManipulate;
 };
