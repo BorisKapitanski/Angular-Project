@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
 
   emailValidatorPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  password1: string = '';
-  password2: string = '';
+  
 
   constructor(private userService: UserService, private router: Router) { }
 
