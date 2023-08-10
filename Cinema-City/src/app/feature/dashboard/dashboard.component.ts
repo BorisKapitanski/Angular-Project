@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     this.movieService.getMovies().subscribe((movies) => {
       this.movies = movies
       this.isLoading = false;
-      if (this.movies) {
+      if (this.movies.length !== 0) {
         this.noMovies = false;
       }
     });

@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     this.movieService.getMovieWithLimit(5).subscribe((movies) => {
       this.movies = movies.slice(-5).reverse();
       this.isLoading = false;
-      if (this.movies) {
+      if (this.movies.length !== 0) {
         this.noMovies = false;
       }
     });
