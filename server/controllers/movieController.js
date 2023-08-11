@@ -21,6 +21,18 @@ function getMovie(req, res, next) {
         .catch(next);
 }
 
+function getLatestsMovies(req, res, next) {
+    const limit = Number(req.query.limit) || 0;
+
+    movieModel.find()
+        .sort({ created_at: -1 })
+        .limit(limit)
+        .then(movies => {
+            res.status(200).json(movies)
+        })
+        .catch(next);
+}
+
 function createMovie(req, res, next) {
     const { title, director, genre, year, imageUrl, plot } = req.body;
     const { _id: userId } = req.user;
@@ -90,5 +102,6 @@ module.exports = {
     getMovie,
     // subscribe,
     editMovie,
-    deleteMovie
+    deleteMovie,
+    getLatestsMovies
 }

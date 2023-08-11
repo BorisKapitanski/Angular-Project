@@ -45,7 +45,7 @@
                     <h3>{{movie.title}}</h3>
                     <h5>{{movie.director}} <span>{{movie.year}}</span></h5>
                     <p>{{movie.genre}}</p>
-                    <button [routerLink]="['/', 'movie-details', movie._id]">Details</button>
+                    <a [routerLink]="['/', 'movie-details', movie._id]">Details</a>
                 </div>
             </li>
         </ul>

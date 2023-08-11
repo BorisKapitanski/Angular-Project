@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommentService } from '../services/comment.service';
+import { mergeMap } from 'rxjs';
 
 
 @Component({
@@ -28,10 +29,18 @@ export class CommentComponent{
 
     const {comment} = form.value;
 
-    this.commentService.createComment(comment, this.movieId).subscribe(()=>{
-      this.commentService.getComments(this.movieId).subscribe((comments)=>{
-        this.commentIsCreated.emit(comments)
+    // this.commentService.createComment(comment, this.movieId).subscribe(()=>{
+    //   this.commentService.getComments(this.movieId).subscribe((comments)=>{
+    //     this.commentIsCreated.emit(comments)
+    //   })
+    // });
+    this.commentService.createComment(comment, this.movieId).pipe(
+      mergeMap(()=>{
+        return this.commentService.getComments(this.movieId)
       })
+    )
+    .subscribe((comments)=>{
+        this.commentIsCreated.emit(comments)
     });
 
     form.reset();

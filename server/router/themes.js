@@ -6,6 +6,7 @@ const { movieController, postController, commentController } = require('../contr
 // middleware that is specific to this router
 
 router.get('/', movieController.getMovies);
+router.get('/latest', movieController.getLatestsMovies);
 router.post('/', auth(), movieController.createMovie);
 
 router.get('/:movieId', movieController.getMovie);

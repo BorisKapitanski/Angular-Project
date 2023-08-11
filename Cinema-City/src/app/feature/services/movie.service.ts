@@ -36,7 +36,7 @@ export class MovieService {
   getMovieWithLimit(limit?: number) {
     const limitFilter = limit ? `?limit=${limit}` : '';
 
-    return this.http.get<Movie[]>(`${environment.apiUrl}/movies${limitFilter}`);
+    return this.http.get<Movie[]>(`${environment.apiUrl}/movies/latest${limitFilter}`);
   }
   
 }

@@ -75,11 +75,13 @@
     text-transform: uppercase;
     border: none;
     letter-spacing: 0.2em;
+    font-weight: bold;
     
 }
 .card .card-info a:hover{
-    color: #F9C356;
+    color: black;
     cursor: pointer;
+    background-color: antiquewhite;
 }
 .card .card-info h3{
     margin-bottom: 1em;
